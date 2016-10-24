@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ONG App</string>
+    <string name="enter_name">ONG Name</string>
+    <string name="add_record">Add ONG</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="empty_list_text">No records found</string>
+    <string name="enter_desc">ONG Type</string>
+    <string name="enter_title">ONG Name</string>
+    <string name="category">ONG Category</string>
+    <string name="objective">ONG Objective</string>
+    <string name="spinner_hint">Choose ONG Type</string>
+    <string-array name="ong_type">
+        <item>Shelter</item>
+        <item>Special Needs</item>
+        <item>Culture</item>
+        <item>Economic Development</item>
+        <item>Education</item>
+        <item>Natural Environment</item>
+        <item>Animal Shelter</item>
+        <item>Health Care</item>
+        <item>Recreation</item>
+    </string-array>
+</resources>
