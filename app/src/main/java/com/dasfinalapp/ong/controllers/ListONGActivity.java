@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,7 +20,18 @@ import com.dasfinalapp.ong.models.DBManager;
 import com.dasfinalapp.ong.models.DatabaseHelper;
 import com.dasfinalapp.ong.R;
 
+
+/**
+ *
+ * The pospuse of this acctivity is to display the information
+ * of the database in form of a listview widget and also
+ * to send the information to the other activities.
+ *
+ */
 public class ListONGActivity extends ActionBarActivity {
+
+
+    // Instance variables
 
     private DBManager dbManager;
 
@@ -29,13 +39,19 @@ public class ListONGActivity extends ActionBarActivity {
 
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.NAME, DatabaseHelper.TYPE, DatabaseHelper.CATEGORY, DatabaseHelper.OBJECTIVE};
+    final String[] from = new String[] { DatabaseHelper._ID, DatabaseHelper.NAME, DatabaseHelper.TYPE, DatabaseHelper.CATEGORY, DatabaseHelper.OBJECTIVE};
 
     final int[] to = new int[] { R.id.id, R.id.name, R.id.type, R.id.category, R.id.objective};
 
 
-
+    /**
+     *
+     * Basically create the new instance that starts
+     * the main list of the app and that is going
+     * and also all available records.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,9 +85,6 @@ public class ListONGActivity extends ActionBarActivity {
         adapter.notifyDataSetChanged();
 
 
-        //ImageView img = (ImageView) this.findViewById(R.id.imageView);
-        //img.setImageResource(R.drawable.shelter);
-
         listView.setAdapter(adapter);
 
         // OnCLickListiner For List Items
@@ -92,10 +105,6 @@ public class ListONGActivity extends ActionBarActivity {
                 String category = testTextView.getText().toString();
                 String objective = objectiveTextView.getText().toString();
 
-                System.out.println("Imprimo title: " + name);
-                System.out.println("Imprimo des: " + type);
-                System.out.println("Imprimo test: " + category);
-
                 Intent modify_intent = new Intent(getApplicationContext(), ModifyONGActivity.class);
                 modify_intent.putExtra("name", name);
                 modify_intent.putExtra("type", type);
@@ -108,12 +117,29 @@ public class ListONGActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     *
+     * The purpose of this method is to create the option menu
+     * basically the add option to start the activity that is going
+     * to add a new record
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+    /**
+     *
+     * This is the method that start the activity
+     * that is going to add the new record.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

@@ -11,11 +11,19 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.dasfinalapp.ong.models.DBManager;
 import com.dasfinalapp.ong.R;
+
+/**
+ *
+ * The porpuse of this activity is basically that to create
+ * a new record of an ONG and added it to the data base that
+ * is created with SQLite.
+ *
+ */
+
 
 public class AddONGActivity extends Activity implements OnClickListener {
 
@@ -30,6 +38,15 @@ public class AddONGActivity extends Activity implements OnClickListener {
 
     private DBManager dbManager;
 
+    /**
+     *
+     * This create the activity that is going to be display in the application
+     * also create the instance of the view to be render when the user starts
+     * the activity.
+     *
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +55,7 @@ public class AddONGActivity extends Activity implements OnClickListener {
 
         setContentView(R.layout.activity_add_record);
 
+        // Assign the values of the texts.
         nameEditText = (EditText) findViewById(R.id.name_edittext);
         typeEditText = (EditText) findViewById(R.id.type_edittext);
         categoryEditText = (EditText) findViewById(R.id.category_edittext);
@@ -50,8 +68,6 @@ public class AddONGActivity extends Activity implements OnClickListener {
         // Apply the adapter to the spinner
         typeSpineer.setAdapter(adapter);
 
-
-
         addTodoBtn = (Button) findViewById(R.id.add_record);
 
         dbManager = new DBManager(this);
@@ -59,6 +75,14 @@ public class AddONGActivity extends Activity implements OnClickListener {
         addTodoBtn.setOnClickListener(this);
     }
 
+    /**
+     *
+     * This function creates the functionality when you click on the add bottom to add a new record to the database
+     * based on the view that is actually rendering and also is reciving the information
+     * from the previous view.
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

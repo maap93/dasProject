@@ -9,6 +9,14 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+
+/**
+ *
+ * This class is basically the primary
+ * operations for the app. It includes
+ * all the CRUD operations
+ *
+ */
 public class DBManager {
 
     private DatabaseHelper dbHelper;
@@ -21,17 +29,34 @@ public class DBManager {
         context = c;
     }
 
+    /**
+     *
+     * Creates a connection with the database.
+     *
+     * @return
+     * @throws SQLException
+     */
     public DBManager open() throws SQLException {
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
         return this;
     }
 
+    /**
+     *
+     * Close the connection with the actual database.
+     *
+     */
     public void close() {
         dbHelper.close();
     }
 
-    // Insert With automatic id in the database
+    /**
+     *
+     * Insert With automatic id in the database
+     *
+     */
+
     public void insert(String name, String type, String category, String objective) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.NAME, name);
@@ -42,7 +67,16 @@ public class DBManager {
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
-    // Insert the default information of the app
+    /**
+     *
+     * Insert the default information of the app
+     *
+     * @param _id
+     * @param name
+     * @param type
+     * @param test
+     * @param objective
+     */
     public void insertWithID(int _id, String name, String type, String test, String objective)
     {
         ContentValues contentValue = new ContentValues();
@@ -55,6 +89,12 @@ public class DBManager {
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
+    /**
+     *
+     * Fetch all the information available of the database.
+     *
+     * @return the fetched data
+     */
     public Cursor fetch() {
         String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.NAME, DatabaseHelper.TYPE, DatabaseHelper.CATEGORY, DatabaseHelper.OBJECTIVE};
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
@@ -64,6 +104,19 @@ public class DBManager {
         return cursor;
     }
 
+
+    /**
+     *
+     * The update operation for the database
+     * information.
+     *
+     * @param _id
+     * @param name
+     * @param type
+     * @param category
+     * @param objective
+     * @return
+     */
     public int update(long _id, String name, String type, String category, String objective) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.NAME, name);

@@ -11,12 +11,18 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-
 import com.dasfinalapp.ong.models.DBManager;
 import com.dasfinalapp.ong.R;
 
+
+/**
+ *
+ * This class is the one that interact whit the update method
+ * of the app and also modify the information of the selected
+ * record for the app.
+ *
+ */
 public class ModifyONGActivity extends Activity implements OnClickListener {
 
 
@@ -35,6 +41,14 @@ public class ModifyONGActivity extends Activity implements OnClickListener {
 
     private DBManager dbManager;
 
+    /**
+     *
+     * Create the instance that is going to start the
+     * main activity of modifying the records of the
+     * database.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,13 +97,20 @@ public class ModifyONGActivity extends Activity implements OnClickListener {
         updateBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
 
-        // Dont Delete records from 1 to 10
+        // Don't Delete records from 1 to 10
         if(_id == 1 || _id == 2 || _id == 3 )
         {
             deleteBtn.setVisibility(View.GONE);
         }
     }
 
+    /**
+     *
+     * Trigger the update method of the modify
+     * activity.
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -111,6 +132,13 @@ public class ModifyONGActivity extends Activity implements OnClickListener {
         }
     }
 
+    /**
+     *
+     * Just send the information after update the
+     * record and send the user to the main menu of
+     * the app.
+     *
+     */
     public void returnHome() {
         Intent home_intent = new Intent(getApplicationContext(), ListONGActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
